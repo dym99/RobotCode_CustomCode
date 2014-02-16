@@ -12,25 +12,26 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  * @author KBotics
  */
-public class BrakeCommand extends Command{
+public class PeterCommand extends Command{
 
-    public BrakeCommand() {
+    public PeterCommand() {
+        
     }
     
     protected void initialize() {
-        
+        CommandBase.peter.init();
     }
 
     protected void execute() {
-        CommandBase.brakes.switchBrakes();
+        CommandBase.peter.reload();
     }
 
     protected boolean isFinished() {
-      return true;
+        return true;
     }
 
     protected void end() {
-         
+        
     }
 
     protected void interrupted() {

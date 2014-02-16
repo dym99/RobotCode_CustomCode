@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.templates.commands.BrakeCommand;
 import edu.wpi.first.wpilibj.templates.commands.FireFlippers;
 import edu.wpi.first.wpilibj.templates.commands.FireLeftFlipper;
 import edu.wpi.first.wpilibj.templates.commands.FireRightFlipper;
+import edu.wpi.first.wpilibj.templates.commands.PeterCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -26,7 +27,7 @@ public class OI {
     JoystickButton bothFlippersButton;
     JoystickButton enableBrakes;
     JoystickButton btnLB;
-    JoystickButton btnRB;
+    JoystickButton reloadbtn;
     
     public OI() {
         driver = new XboxController(1);
@@ -35,9 +36,9 @@ public class OI {
         bothFlippersButton = new JoystickButton(driver.m_joy, driver.XBOX_A);
         enableBrakes = new JoystickButton(driver.m_joy, driver.XBOX_B);
         btnLB = new JoystickButton(driver.m_joy, driver.XBOX_LB);
-        btnRB = new JoystickButton(driver.m_joy, driver.XBOX_RB);
+        reloadbtn = new JoystickButton(driver.m_joy, driver.XBOX_RB);
         
-        
+        reloadbtn.whenPressed(new PeterCommand());
         leftFlipperButton.whenPressed(new FireLeftFlipper());
         rightFlipperButton.whenPressed(new FireRightFlipper());
         bothFlippersButton.whenPressed(new FireFlippers());

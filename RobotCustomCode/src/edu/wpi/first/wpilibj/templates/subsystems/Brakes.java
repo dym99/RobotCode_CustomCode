@@ -21,9 +21,11 @@ public class Brakes extends Subsystem{
     }
     
     public void switchBrakes() {
-        if (RobotMap.leftBrake.get() == DoubleSolenoid.Value.kForward) {
+        if (RobotMap.leftBrake.get() == DoubleSolenoid.Value.kForward && RobotMap.rightBrake.get() == DoubleSolenoid.Value.kForward) {
             RobotMap.leftBrake.set(DoubleSolenoid.Value.kReverse);
+            RobotMap.rightBrake.set(DoubleSolenoid.Value.kReverse);
         } else {
+            RobotMap.leftBrake.set(DoubleSolenoid.Value.kForward);
             RobotMap.rightBrake.set(DoubleSolenoid.Value.kForward);
         }
     }
