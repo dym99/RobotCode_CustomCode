@@ -2,6 +2,10 @@
 package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.BrakeCommand;
+import edu.wpi.first.wpilibj.templates.commands.FireFlippers;
+import edu.wpi.first.wpilibj.templates.commands.FireLeftFlipper;
+import edu.wpi.first.wpilibj.templates.commands.FireRightFlipper;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -15,23 +19,29 @@ public class OI {
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
     
-    XboxController Xbox;
+    public XboxController driver;
     
-    JoystickButton btnX;
-    JoystickButton btnY;
-    JoystickButton btnA;
-    JoystickButton btnB;
+    JoystickButton rightFlipperButton;
+    JoystickButton leftFlipperButton;
+    JoystickButton bothFlippersButton;
+    JoystickButton enableBrakes;
     JoystickButton btnLB;
     JoystickButton btnRB;
     
     public OI() {
-        Xbox = new XboxController(1);
-        btnX = new JoystickButton(Xbox.m_joy, Xbox.XBOX_X);
-        btnY = new JoystickButton(Xbox.m_joy, Xbox.XBOX_Y);
-        btnA = new JoystickButton(Xbox.m_joy, Xbox.XBOX_A);
-        btnB = new JoystickButton(Xbox.m_joy, Xbox.XBOX_B);
-        btnLB = new JoystickButton(Xbox.m_joy, Xbox.XBOX_LB);
-        btnRB = new JoystickButton(Xbox.m_joy, Xbox.XBOX_RB);
+        driver = new XboxController(1);
+        rightFlipperButton = new JoystickButton(driver.m_joy, driver.XBOX_X);
+        leftFlipperButton = new JoystickButton(driver.m_joy, driver.XBOX_Y);
+        bothFlippersButton = new JoystickButton(driver.m_joy, driver.XBOX_A);
+        enableBrakes = new JoystickButton(driver.m_joy, driver.XBOX_B);
+        btnLB = new JoystickButton(driver.m_joy, driver.XBOX_LB);
+        btnRB = new JoystickButton(driver.m_joy, driver.XBOX_RB);
+        
+        
+        leftFlipperButton.whenPressed(new FireLeftFlipper());
+        rightFlipperButton.whenPressed(new FireRightFlipper());
+        bothFlippersButton.whenPressed(new FireFlippers());
+        enableBrakes.whenPressed(new BrakeCommand());
     }
     
     
